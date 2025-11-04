@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>彩色弹窗效果</title>
+    <style>
+        .popup {
+            position: absolute;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            pointer-events: none; /* 点击穿透，不影响底层 */
+        }
+    </style>
+</head>
+<body>
+<script>
+    const messages = ["无敌66", "姬紫颜"];
+    const popupCount = 120;
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    for (let i = 0; i < popupCount; i++) {
+        setTimeout(() => { // 模拟间隔弹出
+            const popup = document.createElement("div");
+            popup.className = "popup";
+            // 随机内容
+            popup.textContent = messages[Math.floor(Math.random() * messages.length)];
+            // 随机样式
+            popup.style.fontSize = (16 + Math.random() * 5) + "px";
+            popup.style.backgroundColor = `rgb(245, ${245 + Math.random() * 10}, 255)`;
+            popup.style.color = `rgb(${60 + Math.random() * 195}, ${60 + Math.random() * 195}, ${60 + Math.random() * 195})`;
+            popup.style.width = (90 + Math.random() * 40) + "px";
+            popup.style.height = (60 + Math.random() * 30) + "px";
+            // 随机位置
+            popup.style.left = (Math.random() * (screenWidth - 130)) + "px";
+            popup.style.top = (Math.random() * (screenHeight - 90)) + "px";
+            document.body.appendChild(popup);
+        }, i * 25); // 间隔25ms
+    }
+</script>
+</body>
+</html>
