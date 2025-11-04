@@ -10,33 +10,65 @@
             border-radius: 8px;
             font-weight: bold;
             pointer-events: none; /* 点击穿透，不影响底层 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 增加轻微阴影，更精致 */
         }
     </style>
 </head>
 <body>
 <script>
-    const messages = ["无敌66", "姬紫颜"];
-    const popupCount = 120;
+    const messages = [
+        "多喝水哦～",
+        "保持微笑呀",
+        "每天都要元气满满",
+        "记得吃水果",
+        "保持好心情",
+        "好好爱自己",
+        "我想你了",
+        "梦想成真",
+        "期待下一次见面",
+        "金榜题名",
+        "顺顺利利",
+        "早点休息",
+        "愿所有烦恼都消失",
+        "别熬夜",
+        "今天过得开心呀",
+        "天冷了，多穿衣服"
+    ];
+    const popupCount = 300; // 弹窗数量增加到300个
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
 
     for (let i = 0; i < popupCount; i++) {
-        setTimeout(() => { // 模拟间隔弹出
+        setTimeout(() => {
             const popup = document.createElement("div");
             popup.className = "popup";
-            // 随机内容
             popup.textContent = messages[Math.floor(Math.random() * messages.length)];
-            // 随机样式
-            popup.style.fontSize = (16 + Math.random() * 5) + "px";
+
+            // 样式调整
+            popup.style.fontSize = (14 + Math.random() * 6) + "px";
             popup.style.backgroundColor = `rgb(245, ${245 + Math.random() * 10}, 255)`;
             popup.style.color = `rgb(${60 + Math.random() * 195}, ${60 + Math.random() * 195}, ${60 + Math.random() * 195})`;
-            popup.style.width = (90 + Math.random() * 40) + "px";
-            popup.style.height = (60 + Math.random() * 30) + "px";
+            popup.style.width = (120 + Math.random() * 80) + "px";
+            popup.style.height = (60 + Math.random() * 40) + "px";
+
             // 随机位置
-            popup.style.left = (Math.random() * (screenWidth - 130)) + "px";
-            popup.style.top = (Math.random() * (screenHeight - 90)) + "px";
+            popup.style.left = (Math.random() * (screenWidth - 200)) + "px";
+            popup.style.top = (Math.random() * (screenHeight - 100)) + "px";
+
+            // 增加弹窗出现的动画效果
+            popup.style.opacity = "0";
+            popup.style.transition = "opacity 0.3s ease";
             document.body.appendChild(popup);
-        }, i * 25); // 间隔25ms
+            // 触发重绘后显示弹窗
+            setTimeout(() => {
+                popup.style.opacity = "1";
+            }, 10);
+
+        }, i * 15); // 间隔缩短到15ms，更快铺满屏幕
     }
 </script>
 </body>
